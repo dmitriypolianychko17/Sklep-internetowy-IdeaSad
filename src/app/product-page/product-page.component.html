@@ -1,0 +1,31 @@
+<div *ngIf="tree$ | async as tree; else loading">
+  <div class="tree">
+    <div class="header right">
+      <button routerLink="/" class="bt">Wstecz</button>
+    </div>
+
+    <div class="flex">
+      <div class="text-center">
+        <h2>{{tree.title}}</h2>
+        <div class="text-center">
+          <quill-view-html [content]="tree.photo"></quill-view-html>
+        </div>
+        <div>
+          <h2>Cena: {{tree.price}} zł</h2>
+          <button class="bt" [routerLink]="['/cart']" (click)="addTree(tree)">Do koszyka</button>
+        </div>
+      </div>
+
+      <div class="item">
+        <h2>Informacja</h2>
+        <div class="flex-center">
+          <quill-view-html [content]="tree.info"></quill-view-html>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>

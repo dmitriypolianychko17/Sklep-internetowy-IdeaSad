@@ -1,0 +1,25 @@
+<!--<div class="text-center">
+  <h2>{{tree.title}}</h2>
+  <div class="flex-center">
+    <quill-view-html [content]="tree.photo"></quill-view-html>
+  </div>
+  <h2>Cena: {{tree.price}} zł</h2>
+  <button [routerLink]="['/tree', tree.id]" class="btn btn-primary">Otwórz</button>
+  <button [routerLink]="['/cart']" class="btn btn-primary" (click)="addTree(tree)">Do koszyka</button>
+</div>
+-->
+
+      <div class="text-center">
+        <h2>{{tree.title}}</h2>
+        <quill-view-html class="imgg" [content]="tree.photo"></quill-view-html>
+      <h2> Cena: {{tree.price}} zł</h2>
+        <div class="container">
+          <div class="col-12">
+            <button [routerLink]="['/tree', tree.id]" class="bt" >Otwórz</button>
+              <button [routerLink]="['/cart']" class="bt" (click)="addTree(tree)">Do koszyka</button>
+          </div>
+          </div>
+        </div>
+
+
+

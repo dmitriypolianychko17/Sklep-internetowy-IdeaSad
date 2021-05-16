@@ -1,0 +1,39 @@
+<div *ngIf="orders.length; else noOrders">
+  <h2 class="text-center">Lista zamówień</h2>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Numer telefonu</th>
+      <th scope="col">Imie</th>
+      <th scope="col">Adres</th>
+      <th scope="col">Zamówienie</th>
+      <th scope="col">Suma</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{order.date | date : 'medium'}}</td>
+      <td>{{order.phone}}</td>
+      <td>{{order.name}}</td>
+      <td>{{order.address}}</td>
+      <td>
+        <div *ngFor="let tree of order.orders">{{tree.title}}</div>
+      </td>
+      <td>
+        <div class="text-center">{{order.price}}zł</div>
+        <div class="text-center">{{order.payment}}</div>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="remove(order.id)">Zrealizowany</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noOrders>
+  <p class="text-center">Narazie niema zamówień</p>
+</ng-template>
+

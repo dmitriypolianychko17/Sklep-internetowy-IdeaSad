@@ -1,0 +1,8 @@
+<!--<div *ngIf="trees$ | async as trees" class="dashboard">
+  <app-tree *ngFor="let tree of trees | sorting : treeService.type" class="box" [tree]="tree">
+  </app-tree>
+</div>-->
+
+<div *ngIf="trees$ | async as trees" class="row">
+  <app-tree *ngFor="let tree of trees | sorting : treeService.type" class="col-md-4" [tree]="tree"></app-tree>
+  </div>

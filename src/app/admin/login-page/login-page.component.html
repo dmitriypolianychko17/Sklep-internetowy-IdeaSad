@@ -1,0 +1,22 @@
+<form class="text-center border border-light p-5" [formGroup]="form" (ngSubmit)="submit()">
+
+  <p class="h4 mb-4">Logowanie administratora</p>
+
+
+  <input id="email" type="email" formControlName="email" class="form-control mb-4" placeholder="E-mail">
+  <div *ngIf="form.get('email').touched && form.get('email').invalid" class="text-danger">
+    <h6 *ngIf="form.get('email').errors.required">Wpisz email</h6>
+    <h6 *ngIf="form.get('email').errors.email,">Wpisz poprawny email</h6>
+  </div>
+
+  <input id="password" type="password" formControlName="password" class="form-control mb-4" placeholder="Password">
+  <div *ngIf="form.get('password').touched && form.get('password').invalid" class="text-danger">
+    <h6 *ngIf="form.get('password').errors.required">Wpisz hasło</h6>
+    <h6 *ngIf="form.get('password').errors.minlength">
+      Długośc hasła ma być co najmniej {{form.get('password').errors.minlength.requiredLength}} znaków.
+      Teraz długośc wynosi {{form.get('password').errors.minlength.actualLength}}
+    </h6>
+  </div>
+
+  <button type="submit" class="bt btn-primary" [disabled]="form.invalid || submitted">Zaloguj</button>
+</form>

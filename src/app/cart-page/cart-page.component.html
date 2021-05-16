@@ -1,0 +1,65 @@
+<div class="container" *ngIf="cartTrees.length >0; else empty">
+  <h2 class="text-center">Twoje zamówienie: </h2>
+ <!-- <table>
+    <tbody>
+    <tr *ngFor="let cartTree of cartTrees; let i = index">
+      <td>{{cartTree.type}}</td>
+      <td>{{cartTree.title}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="delete(cartTree)">Usuń</button>
+      </td>
+      <td>{{cartTree.price}} zł</td>
+    </tr>
+    </tbody>
+  </table>
+  <hr>
+  <b class="right">Suma: {{totalPrice}} zł </b>
+-->
+
+  <table class="table table-striped">
+    <tbody>
+    <tr *ngFor="let cartTree of cartTrees; let i = index">
+      <td>{{cartTree.type}}</td>
+      <td>{{cartTree.title}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="delete(cartTree)">Usuń</button>
+      </td>
+      <td>{{cartTree.price}} zł</td>
+    </tr>
+    </tbody>
+  </table>
+  <hr>
+  <b class="right">Suma: {{totalPrice}} zł </b>
+
+<div class="text-center border border-light p-5">
+  <p class="h4 mb-4">Dane dostawy: </p>
+  <div *ngIf="added" class="text-center text-danger">{{added}}</div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+  <!-- Name -->
+  <input id="name" type="name" formControlName="name" class="form-control mb-4" placeholder="Imie">
+    <div *ngIf="form.get('name').touched && form.get('name').invalid" class="text-danger">
+      <h6 *ngIf="form.get('name').errors.required">Podaj imie</h6>
+    </div>
+  <!-- Email -->
+  <input id="phone" type="phone" formControlName="phone" class="form-control mb-4" placeholder="Numer telefonu">
+    <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="text-danger">
+      <h6 *ngIf="form.get('phone').errors.required">Wpisz numer telefonu</h6>
+    </div>
+    <input id="address" type="address" formControlName="address" class="form-control mb-4" placeholder="Adres">
+    <div *ngIf="form.get('address').touched && form.get('address').invalid" class="text-danger">
+      <h6 *ngIf="form.get('address').errors.required">Podaj adres dostawy</h6>
+    </div>
+  <!-- Subject -->
+  <label for="payment" id="payment">Sposób opłaty zamówienia: </label>
+  <select class="browser-default custom-select mb-4" formControlName="payment">
+      <option value="cash">Gotówka</option>
+      <option value="card">Karta platnicza</option>
+  </select>
+    <button type="submit" class="bt btn-primary" [disabled]="form.invalid || submitted">Zrealizuj zamówienie</button>
+</form>
+</div>
+</div>
+
+<ng-template #empty>
+  <h2 class="text-center">Narazie koszyk jest pusty, prosze wybrać produkt</h2>
+</ng-template>

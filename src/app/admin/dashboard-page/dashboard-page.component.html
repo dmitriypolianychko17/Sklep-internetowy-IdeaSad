@@ -1,0 +1,38 @@
+<div *ngIf="trees.length; else loading">
+  <h2 class="text-center">Tablica produktów</h2>
+
+  <div class="text-center">
+    <input type="text" class="form-control mb-4" placeholder="Find a tree..." [(ngModel)]="treeName">
+  </div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nazwa</th>
+    <th scope="col">Cena</th>
+    <th scope="col">Data utworzenia</th>
+    <th scope="col">Zmiana</th>
+    <th scope="col">Usunięcie</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tree of trees | search: treeName; let idx = index">
+    <td>{{idx + 1}}</td>
+    <td>{{tree.title}}</td>
+    <td>{{tree.price}}</td>
+    <td>{{tree.date | date : 'medium'}}</td>
+    <td>
+      <button class="btn btn-idea" [routerLink]="['/admin','tree', tree.id, 'edit']">Zmień</button>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="remove(tree.id)">Usuń</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>
